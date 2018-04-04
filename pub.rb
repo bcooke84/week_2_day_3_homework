@@ -1,4 +1,5 @@
 class Pub
+
   attr_reader :name, :till, :drinks, :food
 
   def initialize(name, till, drinks, food)
@@ -17,11 +18,13 @@ class Pub
   end
 
   def sell_drink(drink)
+    @drinks.include?(drink)
     @till += drink.price
     @drinks.delete(drink)
   end
 
   def sell_food(food)
+    @food.include?(food)
     @till += food.price
     @food.delete(food)
   end
@@ -41,7 +44,5 @@ class Pub
     else return "Sorry, we cannot serve you!"
     end
   end
-
-
 
 end

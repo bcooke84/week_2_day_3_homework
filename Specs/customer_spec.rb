@@ -8,54 +8,36 @@ require_relative("../food.rb")
 
 class CustomerTest < MiniTest::Test
   def setup()
-    @customer = Customer.new("Victor", 25, [], [], 36, 0)
-    @customer1 = Customer.new("John", 10, [], [], 17, 0)
-    @customer2 = Customer.new("Brian", 20, [], [], 33, 20)
-    @drink1 = Drink.new("Beer", 4, 4)
-    @drink2 = Drink.new("Wine", 5, 5)
-    @drink3 = Drink.new("Cider", 3, 6)
+    @customer = Customer.new("Victor", 25.00, 36, 0)
+    @customer1 = Customer.new("John", 10.00, 17, 0)
+    @customer2 = Customer.new("Brian", 20.00, 33, 20)
+    @drink1 = Drink.new("Beer", 4.00, 4)
+    @drink2 = Drink.new("Wine", 5.00, 5)
+    @drink3 = Drink.new("Cider", 3.00, 6)
     @drink = [@drink1, @drink2, @drink3]
-    @food1 = Food.new("Crisps", 2, -2)
-    @food2 = Food.new("Sandwich", 5, -5)
-    @food3 = Food.new("Pizza", 10, -10)
+    @food1 = Food.new("Crisps", 1.00, -2)
+    @food2 = Food.new("Sandwich", 5.00, -5)
+    @food3 = Food.new("Pizza", 10.00, -10)
     @food = [@food1, @food2, @food3]
-    @pub = Pub.new("The Grumpy Git", 100, @drink, @food)
+    @pub = Pub.new("The Grumpy Git", 100.00, @drink, @food)
   end
 
-  def test_get_customer_name()
+  def test_customer_has_name()
     assert_equal("Victor", @customer.name)
   end
 
-  def test_get_customer_money()
-    assert_equal(25, @customer.wallet)
-  end
-
-  def test_get_customer_has_no_drinks()
-    assert_equal([], @customer.drinks)
-  end
-
-  def test_get_customer_has_no_food()
-    assert_equal([], @customer.food)
-  end
-
-  def test_customer_has_one_drink()
-    @customer.buy_drink(@drink1)
-    assert_equal(1, @customer.drink_count)
-  end
-
-  def test_customer_has_one_food_item()
-    @customer.buy_food(@food1)
-    assert_equal(1, @customer.food_count)
+  def test_customer_has_money()
+    assert_equal(25.00, @customer.wallet)
   end
 
   def test_customer_wallet_amount_has_reduced__drink
     @customer.buy_drink(@drink1)
-    assert_equal(21, @customer.wallet)
+    assert_equal(21.00, @customer.wallet)
   end
 
   def test_customer_wallet_amount_has_reduced__food
     @customer.buy_food(@food3)
-    assert_equal(15, @customer.wallet)
+    assert_equal(15.00, @customer.wallet)
   end
 
   def test_customer_drunkenness_level
